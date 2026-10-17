@@ -1,0 +1,80 @@
+
+<div class="kd-bg">
+  <div class="kd-bg__overlay"></div>
+
+  <kd-navbar></kd-navbar>
+
+  <main class="kd-page">
+
+    <!-- Encabezado -->
+    <header class="kd-page__header">
+      <h1 class="kd-display kd-page__title">
+        💗 Explorar eventos
+      </h1>
+
+      <p class="kd-page__subtitle">
+        Descubre experiencias increíbles en tus
+        cafeterías favoritas. ☕
+      </p>
+    </header>
+
+    <!-- Buscador y filtros -->
+    <section class="kd-explore-tools">
+
+      <div class="kd-search">
+        <input
+          type="search"
+          placeholder="🔍 Buscar eventos o cafeterías..."
+          aria-label="Buscar eventos"
+        />
+      </div>
+
+      <div class="kd-explore-filters">
+        <button
+          type="button"
+          [class.active]="filtroActivo === 'todos'"
+          (click)="cambiarFiltro('todos')">
+          Todos
+        </button>
+
+        <button
+          type="button"
+          [class.active]="filtroActivo === 'gratis'"
+          (click)="cambiarFiltro('gratis')">
+          Gratis
+        </button>
+
+        <button
+          type="button"
+          [class.active]="filtroActivo === 'pago'"
+          (click)="cambiarFiltro('pago')">
+          De pago
+        </button>
+
+        <button
+          type="button"
+          [class.active]="filtroActivo === 'proximos'"
+          (click)="cambiarFiltro('proximos')">
+          Próximos
+        </button>
+      </div>
+
+    </section>
+
+    <!-- Eventos disponibles -->
+    <section class="kd-explore-events">
+
+      <h2>Eventos disponibles</h2>
+
+      <div class="kd-explore-empty">
+        <p>☕ Todavía no hay eventos disponibles.</p>
+        <span>
+          Los eventos publicados por las cafeterías
+          aparecerán aquí.
+        </span>
+      </div>
+
+    </section>
+
+  </main>
+</div>

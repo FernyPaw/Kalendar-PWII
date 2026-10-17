@@ -1,0 +1,156 @@
+
+:host {
+  display: block;
+  min-height: 100vh;
+}
+
+.kd-bg {
+  min-height: 100vh;
+  background: #fff7fb;
+}
+
+.kd-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 24px 70px;
+}
+
+.kd-page__header {
+  margin-bottom: 30px;
+}
+
+.kd-page__title {
+  margin: 0 0 12px;
+  color: #914d70;
+  font-size: 2.3rem;
+}
+
+.kd-page__subtitle {
+  color: #8b7180;
+  line-height: 1.6;
+}
+
+/* Buscador y filtros */
+.kd-explore-tools {
+  padding: 26px;
+  margin-bottom: 28px;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid #f1c8da;
+  border-radius: 18px;
+  box-shadow: 0 6px 20px rgba(105, 45, 75, 0.08);
+}
+
+.kd-search {
+  margin-bottom: 20px;
+}
+
+.kd-search input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 15px 18px;
+  border: 1px solid #e7bfd0;
+  border-radius: 12px;
+  background: #fff8fb;
+  color: #46323c;
+  font: inherit;
+  outline: none;
+}
+
+.kd-search input:focus {
+  border-color: #d96a9f;
+  box-shadow: 0 0 0 3px rgba(217, 106, 159, 0.14);
+}
+
+.kd-search input::placeholder {
+  color: #aa8799;
+}
+
+/* Botones de filtros */
+.kd-explore-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.kd-explore-filters button {
+  padding: 11px 20px;
+  border: 1px solid #e5a8c6;
+  border-radius: 10px;
+  background: #fff8fb;
+  color: #914d70;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.kd-explore-filters button:hover {
+  background: #fce6f0;
+}
+
+.kd-explore-filters button.active {
+  background: #d96a9f;
+  border-color: #d96a9f;
+  color: #fff;
+}
+
+/* Eventos disponibles */
+.kd-explore-events {
+  padding: 28px;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid #f1c8da;
+  border-radius: 18px;
+  box-shadow: 0 6px 20px rgba(105, 45, 75, 0.08);
+}
+
+.kd-explore-events h2 {
+  margin: 0 0 22px;
+  color: #914d70;
+  font-size: 1.4rem;
+}
+
+/* Mensaje cuando no hay eventos */
+.kd-explore-empty {
+  padding: 45px 20px;
+  text-align: center;
+  background: #fff8fb;
+  border: 1px dashed #e5a8c6;
+  border-radius: 12px;
+}
+
+.kd-explore-empty p {
+  margin: 0 0 10px;
+  color: #914d70;
+  font-weight: 600;
+}
+
+.kd-explore-empty span {
+  color: #8b7180;
+  font-size: 0.9rem;
+}
+
+/* Diseño adaptable */
+@media (max-width: 600px) {
+  .kd-page {
+    padding: 25px 16px 50px;
+  }
+
+  .kd-page__title {
+    font-size: 1.8rem;
+  }
+
+  .kd-explore-tools,
+  .kd-explore-events {
+    padding: 20px;
+  }
+
+  .kd-explore-filters {
+    gap: 8px;
+  }
+
+  .kd-explore-filters button {
+    flex: 1 1 45%;
+    padding: 11px 10px;
+  }
+}
+

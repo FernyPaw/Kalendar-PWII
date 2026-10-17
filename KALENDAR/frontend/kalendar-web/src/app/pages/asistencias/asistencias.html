@@ -1,0 +1,227 @@
+
+<div class="kd-bg">
+  <div class="kd-bg__overlay"></div>
+
+  <kd-navbar></kd-navbar>
+
+  <main class="kd-page">
+
+    <header class="kd-page__header">
+      <h1 class="kd-display kd-page__title">
+         Asistencias
+      </h1>
+
+      <p class="kd-page__subtitle">
+        Consulta los registros y verifica la entrada
+        de los asistentes a tus eventos.
+      </p>
+    </header>
+
+<!-- Eventos próximos -->
+<section class="kd-attendance-section">
+
+  <h2>Próximos eventos</h2>
+
+  <p>
+    Consulta los eventos que están por realizarse
+    y sus registros de asistentes.
+  </p>
+
+  <div class="kd-attendance-empty">
+     Todavía no hay eventos próximos.
+  </div>
+
+</section>
+
+<!-- Eventos terminados -->
+<section class="kd-attendance-section">
+
+  <h2> Eventos terminados</h2>
+
+  <p>
+    Consulta el historial de eventos realizados
+    y las asistencias registradas.
+  </p>
+
+  <div class="kd-attendance-empty">
+     Todavía no hay eventos terminados.
+  </div>
+
+</section>
+
+<!-- Selección de evento -->
+<section class="kd-attendance-section">
+
+  <h2>Seleccionar evento</h2>
+
+  <p>
+    Selecciona el evento para consultar sus registros
+    y verificar las entradas de los asistentes.
+  </p>
+
+  <div class="kd-code-form">
+    <label for="eventoAsistencia">
+      Evento
+    </label>
+
+   
+<select
+  id="eventoAsistencia"
+  [value]="eventoSeleccionado ?? ''"
+  (change)="eventoSeleccionado = $any($event.target).value
+    ? +$any($event.target).value
+    : null"
+>
+  <option value="" disabled>
+    Selecciona un evento
+  </option>
+
+  <option
+    *ngFor="let evento of eventos"
+    [value]="evento.id"
+  >
+    {{ evento.nombre }}
+  </option>
+</select>
+
+<p *ngIf="eventos.length === 0" class="kd-attendance-empty">
+   Todavía no hay eventos disponibles para gestionar asistencias.
+</p>
+
+  </div>
+
+</section>
+
+    <!-- Validación de códigos -->
+    <section class="kd-attendance-section">
+
+      <h2>Validar entrada</h2>
+
+<p *ngIf="eventoSeleccionado === null" class="kd-attendance-empty">
+   Primero selecciona un evento para verificar
+  los códigos de sus asistentes.
+</p>
+
+
+
+<p *ngIf="eventoSeleccionado !== null">
+  <strong>Evento seleccionado:</strong>
+  {{ nombreEventoSeleccionado }}
+</p>
+
+
+
+      <p>
+        Ingresa el código que recibió el cliente
+        al registrarse en el evento.
+      </p>
+
+      <div class="kd-code-form">
+        <label for="codigoAsistencia">
+          Código de asistencia
+        </label>
+
+        
+<input
+  id="codigoAsistencia"
+  type="text"
+  placeholder="Ej. KLD-8X42P"
+  [value]="codigoAsistencia"
+  
+(input)="codigoAsistencia = $any($event.target).value; errorCodigo = ''"
+
+/>
+
+<button
+  type="button"
+  class="kd-validate-btn"
+  [disabled]="eventoSeleccionado === null"
+  (click)="validarCodigo()"
+>
+  Validar código
+</button>
+
+<p
+  *ngIf="errorCodigo"
+  class="kd-field__error"
+  role="alert"
+>
+  {{ errorCodigo }}
+</p>
+
+      </div>
+
+    </section>
+
+   
+<!-- Registros de asistentes -->
+<section class="kd-attendance-section">
+
+  <h2> Registros de asistencia</h2>
+
+  <p>
+    Consulta los clientes registrados
+    en el evento seleccionado.
+  </p>
+
+  <!-- Sin evento seleccionado -->
+  <div
+    class="kd-attendance-empty"
+    *ngIf="eventoSeleccionado === null"
+  >
+     Selecciona un evento para consultar sus asistentes.
+  </div>
+
+  <!-- Evento sin registros -->
+  <div
+    class="kd-attendance-empty"
+    *ngIf="
+      eventoSeleccionado !== null &&
+      registrosEventoSeleccionado.length === 0
+    "
+  >
+     Todavía no hay clientes registrados en este evento.
+  </div>
+
+  <!-- Lista de asistentes -->
+  <div
+    class="kd-attendance-list"
+    *ngIf="registrosEventoSeleccionado.length > 0"
+  >
+
+    <div
+      class="kd-attendance-item"
+      *ngFor="let registro of registrosEventoSeleccionado"
+    >
+
+      <p>
+        <strong>Cliente:</strong>
+        {{ registro.nombreCliente }}
+      </p>
+
+      <p>
+        <strong>Código:</strong>
+        {{ registro.codigo }}
+      </p>
+
+      <p>
+        <strong>Estado:</strong>
+
+        <span *ngIf="registro.asistenciaConfirmada">
+           Asistencia confirmada
+        </span>
+
+        <span *ngIf="!registro.asistenciaConfirmada">
+          ⏳ Pendiente de entrada
+        </span>
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+  </main>
+</div>

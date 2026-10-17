@@ -1,14 +1,81 @@
-<header class="kd-nav">
-  <a class="kd-nav__brand kd-display" routerLink="/dashboard">Kalendar</a>
 
-  <button class="kd-nav__toggle" (click)="toggleMenu()" aria-label="Abrir menú">
-    <span></span><span></span><span></span>
-  </button>
+<aside class="kd-sidebar" [class.kd-sidebar--collapsed]="!menuOpen">
 
-  <nav class="kd-nav__links" [class.kd-nav__links--open]="menuOpen">
-    <a routerLink="/dashboard" routerLinkActive="is-active">Dashboard</a>
-    <a routerLink="/crear" routerLinkActive="is-active">Crear</a>
-    <a routerLink="/perfil" routerLinkActive="is-active">Perfil</a>
-    <a routerLink="/login" class="kd-nav__logout">Cerrar sesión</a>
+  <!-- Logo de KALENDAR y botón para contraer -->
+  <div class="kd-sidebar__header">
+    <a
+      *ngIf="menuOpen"
+      routerLink="/dashboard"
+      class="kd-sidebar__brand kd-display"
+    >
+      KALENDAR
+    </a>
+
+    <button
+      type="button"
+      class="kd-sidebar__toggle"
+      (click)="toggleMenu()"
+      [attr.aria-label]="menuOpen ? 'Contraer menú' : 'Expandir menú'"
+      [attr.aria-expanded]="menuOpen"
+    >
+      ☰
+    </button>
+  </div>
+
+  <!-- Foto y datos de la cuenta -->
+  <div class="kd-sidebar__profile">
+
+    <img
+      *ngIf="profileImage; else defaultAvatar"
+      [src]="profileImage"
+      alt="Foto de perfil"
+      class="kd-sidebar__avatar"
+    />
+
+    <ng-template #defaultAvatar>
+      <div class="kd-sidebar__avatar kd-sidebar__avatar--default">
+        👤
+      </div>
+    </ng-template>
+
+    <div *ngIf="menuOpen" class="kd-sidebar__profile-info">
+      <strong>{{ userName }}</strong>
+      <span>{{ username }}</span>
+    </div>
+
+  </div>
+
+  <!-- Apartados según el rol de la cuenta -->
+  <nav class="kd-sidebar__nav" aria-label="Menú principal">
+
+    <a
+      *ngFor="let item of menuItems"
+      [routerLink]="item.route"
+      routerLinkActive="is-active"
+      [attr.title]="!menuOpen ? item.label : null"
+      class="kd-sidebar__link"
+    >
+      <span class="kd-sidebar__icon">{{ item.icon }}</span>
+
+      <span *ngIf="menuOpen" class="kd-sidebar__label">
+        {{ item.label }}
+      </span>
+    </a>
+
   </nav>
-</header>
+
+  <!-- Cerrar sesión -->
+  <div class="kd-sidebar__footer">
+    <button
+  type="button"
+  class="kd-sidebar__link"
+  (click)="logout()"
+>
+  <span class="kd-sidebar__icon"></span>
+  <span *ngIf="menuOpen" class="kd-sidebar__label">
+    Cerrar sesión
+  </span>
+</button>
+  </div> 
+
+</aside>

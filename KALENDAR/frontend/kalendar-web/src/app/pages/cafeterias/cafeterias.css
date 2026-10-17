@@ -1,0 +1,118 @@
+
+:host {
+  display: block;
+  min-height: 100vh;
+}
+
+.kd-bg {
+  min-height: 100vh;
+  background: #fff7fb;
+}
+
+.kd-page {
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 40px 24px 70px;
+}
+
+.kd-page__header {
+  margin-bottom: 32px;
+}
+
+.kd-page__title {
+  color: #914d70;
+  font-size: 2.3rem;
+  margin-bottom: 12px;
+}
+
+.kd-page__subtitle {
+  color: #8b7180;
+  line-height: 1.6;
+}
+
+/* Secciones principales */
+.kd-cafes-section {
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid #f1c8da;
+  border-radius: 18px;
+  padding: 28px;
+  margin-bottom: 26px;
+  box-shadow: 0 6px 20px rgba(105, 45, 75, 0.08);
+}
+
+.kd-cafes-section h2 {
+  margin: 0 0 12px;
+  color: #914d70;
+  font-size: 1.4rem;
+}
+
+.kd-cafes-section > p {
+  color: #8b7180;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+/* Filtros */
+.kd-cafes-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.kd-cafes-filters button {
+  padding: 11px 20px;
+  border: 1px solid #e5a8c6;
+  border-radius: 10px;
+  background: #fff8fb;
+  color: #914d70;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.kd-cafes-filters button:hover {
+  background: #fce6f0;
+}
+
+.kd-cafes-filters button.active {
+  background: #d96a9f;
+  border-color: #d96a9f;
+  color: white;
+}
+
+/* Mensajes cuando no hay registros */
+.kd-empty-state {
+  padding: 40px 20px;
+  text-align: center;
+  background: #fff8fb;
+  border: 1px dashed #e5a8c6;
+  border-radius: 12px;
+  color: #914d70;
+  font-weight: 500;
+}
+
+/* Diseño para celulares */
+@media (max-width: 600px) {
+  .kd-page {
+    padding: 25px 16px 50px;
+  }
+
+  .kd-page__title {
+    font-size: 1.8rem;
+  }
+
+  .kd-cafes-section {
+    padding: 20px;
+  }
+
+  .kd-cafes-filters {
+    gap: 8px;
+  }
+
+  .kd-cafes-filters button {
+    flex: 1 1 45%;
+    padding: 11px 10px;
+  }
+}

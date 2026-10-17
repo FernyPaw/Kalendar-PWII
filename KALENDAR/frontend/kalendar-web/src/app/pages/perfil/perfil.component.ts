@@ -4,7 +4,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NavbarComponent } from '../../shared/navbar/navbar.component';
 import { CardComponent } from '../../shared/ui/card/card.component';
 import { ButtonComponent } from '../../shared/ui/button/button.component';
-
+import { Session } from '../../core/services/session';
 @Component({
   selector: 'app-perfil',
   standalone: true,
@@ -14,6 +14,30 @@ import { ButtonComponent } from '../../shared/ui/button/button.component';
 })
 export class PerfilComponent {
   private fb = inject(FormBuilder);
+
+private session = inject(Session);
+
+mostrarFormularioPublicacion = false;
+
+get esCafeteria(): boolean {
+  return this.session.currentUser?.role === 'cafeteria';
+}
+
+get puedePublicar(): boolean {
+  return (
+    this.esCafeteria &&
+    this.session.currentUser?.cafeStatus === 'approved'
+  );
+}
+
+toggleFormularioPublicacion(): void {
+  if (!this.puedePublicar) {
+    return;
+  }
+
+  this.mostrarFormularioPublicacion =
+    !this.mostrarFormularioPublicacion;
+}
 
   saving = false;
   saved = false;

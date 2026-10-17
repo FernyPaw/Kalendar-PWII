@@ -34,16 +34,75 @@ export class RegisterComponent {
   showPassword = false;
   errorMessage = '';
 
-  form = this.fb.group(
-    {
-      name: ['', [Validators.required, Validators.minLength(2)]],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', [Validators.required]],
-    },
-    { validators: passwordsMatchValidator() },
-  );
+form = this.fb.group(
+  {
+   accountType: ['cliente', [Validators.required]],
+name: ['', [Validators.required, Validators.minLength(2)]],
+username: ['', [
+  Validators.required,
+  Validators.minLength(3),
+  Validators.maxLength(20),
+  Validators.pattern(/^[a-zA-Z0-9_]+$/)
+]],
+rfc: ['', [
+  Validators.pattern(/^[A-ZÑ&]{3,4}\d{6}[A-Z0-9]{3}$/i)
+]],
 
+phone: ['', [
+  Validators.pattern(/^[0-9]{10}$/)
+]],
+
+email: ['', [
+  Validators.required,
+  Validators.email
+]],
+
+password: ['', [
+  Validators.required,
+  Validators.minLength(8),
+  Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9\s]).{8,}$/)
+]],
+
+confirmPassword: ['', [
+  Validators.required
+]],
+   
+  },
+  { validators: passwordsMatchValidator() },
+);
+
+updateRfcValidation() {
+  const accountType = this.form.controls.accountType.value;
+  const rfc = this.form.controls.rfc;
+
+  if (accountType === 'cafeteria') {
+    rfc.setValidators([
+      Validators.required,
+      Validators.pattern(/^[A-ZÑ&]{3,4}\d{6}[A-Z0-9]{3}$/i)
+    ]);
+  } else {
+    rfc.clearValidators();
+    rfc.reset('');
+  }
+
+  rfc.updateValueAndValidity();
+}
+updatePhoneValidation() {
+  const accountType = this.form.controls.accountType.value;
+  const phone = this.form.controls.phone;
+
+  if (accountType === 'cafeteria') {
+    phone.setValidators([
+      Validators.required,
+      Validators.pattern(/^[0-9]{10}$/)
+    ]);
+  } else {
+    phone.clearValidators();
+    phone.reset('');
+  }
+
+  phone.updateValueAndValidity();
+}
   togglePassword() {
     this.showPassword = !this.showPassword;
   }

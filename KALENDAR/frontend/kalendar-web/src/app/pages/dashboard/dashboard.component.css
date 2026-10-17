@@ -12,8 +12,8 @@
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(255, 255, 255, 0.75) 0%,
-    rgba(255, 227, 239, 0.65) 100%
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(255, 227, 239, 0.15) 100%
   );
   z-index: 0;
 }
@@ -21,8 +21,12 @@
 .kd-page {
   position: relative;
   z-index: 1;
+
   max-width: 1100px;
-  margin: 0 auto;
+
+  margin-left: 260px;
+  margin-right: auto;
+
   padding: var(--kd-space-5);
 }
 
@@ -104,7 +108,7 @@
   font-size: 1rem;
   padding: 4px 8px;
   border-radius: var(--kd-radius-sm);
-  transition: background 0.15s ease;
+ transition: background 0.15s ease;
 }
 
 .kd-pub__icon-btn:hover {
@@ -121,4 +125,226 @@
 .kd-empty__emoji {
   font-size: 2.5rem;
   margin: 0 0 var(--kd-space-2) 0;
+}
+
+/* Avisos de aprobación de cafeterías */
+.kd-approval-notice {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #f4bfd6;
+  border-left: 5px solid #e78ab4;
+  border-radius: 16px;
+  padding: 22px 26px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 18px rgba(180, 90, 130, 0.08);
+}
+
+.kd-approval-notice h2 {
+  color: #9d4774;
+  font-size: 1.25rem;
+  margin: 0 0 12px;
+}
+
+.kd-approval-notice p {
+  color: var(--kd-ink-soft);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.kd-approval-notice__button {
+  margin-top: 18px;
+  padding: 10px 22px;
+  background: #d96a9f;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.kd-approval-notice__button:hover {
+  background: #bd4d83;
+}
+
+/* Panel de control de cafetería */
+.kd-cafe-dashboard {
+  margin-bottom: 28px;
+}
+
+.kd-cafe-dashboard h2 {
+  color: #9d4774;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.kd-cafe-dashboard > p {
+  color: #765b69;
+  margin-bottom: 24px;
+}
+
+/* Contenedor de estadísticas */
+.kd-cafe-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+/* Tarjetas */
+.kd-cafe-stat {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid #f4bfd6;
+  border-radius: 16px;
+  padding: 22px 18px;
+  box-shadow: 0 4px 15px rgba(180, 90, 130, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.kd-cafe-stat:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 22px rgba(180, 90, 130, 0.15);
+}
+
+.kd-cafe-stat span {
+  display: block;
+  color: #765b69;
+  font-size: 0.9rem;
+  margin-bottom: 14px;
+}
+
+.kd-cafe-stat h3 {
+  color: #d96a9f;
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* Adaptación a pantallas pequeñas */
+@media (max-width: 1100px) {
+  .kd-cafe-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .kd-cafe-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==================================
+   PANEL DE CONTROL DEL ADMINISTRADOR
+================================== */
+
+.kd-admin-dashboard {
+  margin-bottom: 32px;
+}
+
+.kd-admin-header {
+  margin-bottom: 30px;
+}
+
+.kd-admin-header h1 {
+  margin: 0 0 12px;
+  color: #914d70;
+  font-size: 2.3rem;
+}
+
+.kd-admin-header p {
+  color: #8b7180;
+  line-height: 1.6;
+}
+
+/* Tarjetas de estadísticas */
+.kd-admin-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.kd-admin-stat {
+  padding: 25px;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid #f1c8da;
+  border-radius: 18px;
+  box-shadow: 0 6px 20px rgba(105, 45, 75, 0.08);
+  transition: transform 0.2s ease;
+}
+
+.kd-admin-stat:hover {
+  transform: translateY(-4px);
+}
+
+.kd-admin-stat span {
+  display: block;
+  margin-bottom: 16px;
+  color: #914d70;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.kd-admin-stat h3 {
+  margin: 0;
+  color: #d96a9f;
+  font-size: 2.4rem;
+  font-weight: 700;
+}
+
+/* Accesos rápidos */
+.kd-admin-actions {
+  padding: 28px;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid #f1c8da;
+  border-radius: 18px;
+  box-shadow: 0 6px 20px rgba(105, 45, 75, 0.08);
+}
+
+.kd-admin-actions h2 {
+  margin: 0 0 22px;
+  color: #914d70;
+  font-size: 1.4rem;
+}
+
+.kd-admin-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.kd-admin-links a {
+  display: inline-block;
+  padding: 13px 24px;
+  background: #d96a9f;
+  border-radius: 10px;
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.kd-admin-links a:hover {
+  background: #bd4d83;
+}
+
+/* Diseño adaptable */
+@media (max-width: 600px) {
+  .kd-admin-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .kd-admin-stats {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .kd-admin-stat,
+  .kd-admin-actions {
+    padding: 20px;
+  }
+
+  .kd-admin-links a {
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+  }
 }

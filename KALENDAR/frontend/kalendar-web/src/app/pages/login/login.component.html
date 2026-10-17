@@ -20,9 +20,21 @@
           autocomplete="email"
           [class.kd-field__input--error]="email.invalid && email.touched"
         />
-        <span class="kd-field__error" *ngIf="email.invalid && email.touched">
-          Ingresa un correo válido.
-        </span>
+       
+<span
+  class="kd-field__error"
+  *ngIf="email.hasError('required') && email.touched"
+>
+  El correo electrónico es obligatorio.
+</span>
+
+<span
+  class="kd-field__error"
+  *ngIf="email.hasError('email') && email.touched"
+>
+  Ingresa un correo electrónico válido.
+</span>
+
       </div>
 
       <div class="kd-field">
@@ -45,9 +57,29 @@
             {{ showPassword ? 'Ocultar' : 'Ver' }}
           </button>
         </div>
-        <span class="kd-field__error" *ngIf="password.invalid && password.touched">
-          Mínimo 6 caracteres.
-        </span>
+       
+<span
+  class="kd-field__error"
+  *ngIf="password.hasError('required') && password.touched"
+>
+  La contraseña es obligatoria.
+</span>
+
+<span
+  class="kd-field__error"
+  *ngIf="password.hasError('minlength') && password.touched"
+>
+  La contraseña debe tener al menos 8 caracteres.
+</span>
+
+<span
+  class="kd-field__error"
+  *ngIf="password.hasError('pattern') && password.touched"
+>
+  Debe incluir una mayúscula, una minúscula, un número y un carácter especial.
+</span>
+
+
       </div>
 
       <div class="kd-auth__row">

@@ -1,0 +1,80 @@
+
+<div class="kd-bg">
+  <div class="kd-bg__overlay"></div>
+
+  <kd-navbar></kd-navbar>
+
+  <main class="kd-page">
+
+    <header class="kd-page__header">
+      <h1 class="kd-display kd-page__title">
+        ☕ Gestión de cafeterías
+      </h1>
+
+      <p class="kd-page__subtitle">
+        Revisa las solicitudes de registro y administra
+        las cafeterías de KALENDAR.
+      </p>
+    </header>
+
+    <!-- Solicitudes pendientes -->
+    <section class="kd-cafes-section">
+      <h2>💌 Solicitudes pendientes</h2>
+
+      <p>
+        Aquí aparecerán las cafeterías que esperan
+        la aprobación del administrador.
+      </p>
+
+      <div class="kd-empty-state">
+        No hay solicitudes pendientes por el momento.
+      </div>
+    </section>
+
+    <!-- Cafeterías registradas -->
+    <section class="kd-cafes-section">
+      <h2>☕ Cafeterías registradas</h2>
+
+      <p>
+        Consulta las cafeterías registradas
+        y su estado de aprobación.
+      </p>
+
+      <!-- Filtros -->
+      <div class="kd-cafes-filters">
+        <button
+          type="button"
+          [class.active]="filtroActivo === 'todas'"
+          (click)="cambiarFiltro('todas')">
+          Todas
+        </button>
+
+        <button
+          type="button"
+          [class.active]="filtroActivo === 'pendientes'"
+          (click)="cambiarFiltro('pendientes')">
+          Pendientes
+        </button>
+
+        <button
+          type="button"
+          [class.active]="filtroActivo === 'aprobadas'"
+          (click)="cambiarFiltro('aprobadas')">
+          Aprobadas
+        </button>
+
+        <button
+          type="button"
+          [class.active]="filtroActivo === 'rechazadas'"
+          (click)="cambiarFiltro('rechazadas')">
+          Rechazadas
+        </button>
+      </div>
+
+      <div class="kd-empty-state">
+        Todavía no hay cafeterías para mostrar.
+      </div>
+    </section>
+
+  </main>
+</div>

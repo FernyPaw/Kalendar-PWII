@@ -1,0 +1,129 @@
+
+:host {
+  display: block;
+  min-height: 100vh;
+}
+
+.kd-bg {
+  min-height: 100vh;
+  background: #fff7fb;
+}
+
+.kd-page {
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 40px 24px 70px;
+}
+
+.kd-page__header {
+  margin-bottom: 32px;
+}
+
+.kd-page__title {
+  color: #914d70;
+  font-size: 2.3rem;
+  margin-bottom: 12px;
+}
+
+.kd-page__subtitle {
+  color: #8b7180;
+  line-height: 1.6;
+}
+
+/* Tarjetas principales */
+.kd-attendance-section {
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid #f1c8da;
+  border-radius: 18px;
+  padding: 28px;
+  margin-bottom: 26px;
+  box-shadow: 0 6px 20px rgba(105, 45, 75, 0.08);
+}
+
+.kd-attendance-section h2 {
+  color: #914d70;
+  margin: 0 0 12px;
+  font-size: 1.4rem;
+}
+
+.kd-attendance-section > p {
+  color: #8b7180;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+/* Formulario de validación */
+.kd-code-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.kd-code-form label {
+  color: #783c5c;
+  font-weight: 600;
+}
+
+.kd-code-form input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 15px;
+  border: 1px solid #e7bfd0;
+  border-radius: 12px;
+  background: #fff8fb;
+  color: #46323c;
+  font: inherit;
+  outline: none;
+}
+
+.kd-code-form input:focus {
+  border-color: #d96a9f;
+  box-shadow: 0 0 0 3px rgba(217, 106, 159, 0.14);
+}
+
+.kd-validate-btn {
+  align-self: flex-start;
+  padding: 13px 26px;
+  border: none;
+  border-radius: 10px;
+  background: #d96a9f;
+  color: white;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.kd-validate-btn:hover {
+  background: #bd4d83;
+}
+
+/* Estado vacío */
+.kd-attendance-empty {
+  padding: 40px 20px;
+  text-align: center;
+  background: #fff8fb;
+  border: 1px dashed #e5a8c6;
+  border-radius: 12px;
+  color: #914d70;
+  font-weight: 500;
+}
+
+/* Adaptación para celulares */
+@media (max-width: 600px) {
+  .kd-page {
+    padding: 25px 16px 50px;
+  }
+
+  .kd-page__title {
+    font-size: 1.8rem;
+  }
+
+  .kd-attendance-section {
+    padding: 20px;
+  }
+
+  .kd-validate-btn {
+    width: 100%;
+  }
+}

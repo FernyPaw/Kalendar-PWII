@@ -1,0 +1,394 @@
+
+/* Fondo de la página */
+.kd-bg {
+  min-height: 100vh;
+  position: relative;
+  background-image: url('/FCrearP.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.kd-bg__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(219, 245, 237, 0.35);
+  pointer-events: none;
+}
+
+/* Contenido junto a la barra lateral */
+.kd-page {
+  position: relative;
+  margin-left: 260px;
+  padding: 40px 48px;
+  min-height: 100vh;
+  transition: margin-left 0.25s ease;
+}
+
+/* Barra lateral contraída */
+:host-context(body.kd-sidebar-collapsed) .kd-page {
+  margin-left: 76px;
+}
+
+/* Encabezado */
+.kd-page__header {
+  margin-bottom: 28px;
+}
+
+.kd-page__title {
+  color: #241538;
+  font-size: 2rem;
+  margin: 0 0 10px;
+}
+
+.kd-page__subtitle {
+  color: #765b69;
+  font-size: 1rem;
+}
+
+/* Pantallas pequeñas */
+@media (max-width: 768px) {
+  .kd-page {
+    margin-left: 220px;
+    padding: 24px;
+  }
+
+  :host-context(body.kd-sidebar-collapsed) .kd-page {
+    margin-left: 64px;
+  }
+}
+
+/* Contenedor del botón Crear evento */
+.kd-events-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 24px;
+}
+
+/* Botón Crear evento */
+.kd-create-event-btn {
+  background: #d96a9f;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 24px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.kd-create-event-btn:hover {
+  background: #bd4d83;
+  transform: translateY(-2px);
+}
+
+/* Formulario de creación */
+.kd-event-form {
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid #f4bfd6;
+  border-radius: 18px;
+  padding: 28px;
+  margin-bottom: 28px;
+  box-shadow: 0 6px 22px rgba(180, 90, 130, 0.1);
+}
+
+.kd-event-form h2 {
+  color: #9d4774;
+  font-size: 1.4rem;
+  margin: 0 0 12px;
+}
+
+.kd-event-form p {
+  color: #765b69;
+  line-height: 1.6;
+}
+
+/* Indicador de los pasos del formulario */
+.kd-event-steps {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #f4bfd6;
+}
+
+.kd-event-steps span {
+  color: #968b9f;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.kd-event-steps span.kd-step-active {
+  color: #7651e8;
+  font-weight: 700;
+}
+
+.kd-event-steps .kd-step-arrow {
+  color: #c5b9cf;
+}
+
+
+/* Campos del formulario */
+.kd-event-form .kd-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.kd-event-form .kd-form-group label {
+  color: #783c5c;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.kd-event-form .kd-form-group input:not([type="file"]),
+.kd-event-form .kd-form-group textarea,
+.kd-event-form .kd-form-group select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border: 1px solid #e7bfd0;
+  border-radius: 10px;
+  background: #fff;
+  color: #46323c;
+  font: inherit;
+  outline: none;
+}
+
+.kd-event-form .kd-form-group input:focus,
+.kd-event-form .kd-form-group textarea:focus,
+.kd-event-form .kd-form-group select:focus {
+  border-color: #d96a9f;
+  box-shadow: 0 0 0 3px rgba(217, 106, 159, 0.14);
+}
+
+.kd-event-form .kd-form-group textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+.kd-event-form h3 {
+  margin: 28px 0 16px;
+  color: #914d70;
+}
+
+/* Área para subir el flyer */
+.kd-flyer-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 28px 18px;
+  border: 2px dashed #e5a8c6;
+  border-radius: 16px;
+  background: #fff7fb;
+  text-align: center;
+}
+
+.kd-flyer-icon {
+  font-size: 2.5rem;
+}
+
+.kd-flyer-upload p {
+  margin: 0;
+  color: #783c5c;
+  font-weight: 600;
+}
+
+.kd-flyer-upload input[type="file"] {
+  max-width: 100%;
+  color: #783c5c;
+}
+
+.kd-flyer-upload input[type="file"]::file-selector-button {
+  margin-right: 12px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  background: #d96a9f;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.kd-flyer-upload input[type="file"]::file-selector-button:hover {
+  background: #bd4d83;
+}
+
+.kd-flyer-upload small {
+  color: #8b7180;
+  font-size: 0.8rem;
+}
+
+/* Adaptación a pantallas pequeñas */
+@media (max-width: 600px) {
+  .kd-event-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .kd-flyer-upload {
+    padding: 20px 12px;
+  }
+}
+
+
+/* Botón para publicar evento */
+.kd-event-submit {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #f1c8da;
+}
+
+.kd-publish-btn {
+  padding: 14px 28px;
+  border: none;
+  border-radius: 12px;
+  background: #d96a9f;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(217, 106, 159, 0.2);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.kd-publish-btn:hover {
+  background: #bd4d83;
+  transform: translateY(-2px);
+}
+
+.kd-publish-btn:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 600px) {
+  .kd-publish-btn {
+    width: 100%;
+  }
+}
+
+/* Sección de eventos publicados */
+.kd-events-list {
+  margin-top: 32px;
+  padding: 28px;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid #f1c8da;
+  border-radius: 18px;
+  box-shadow: 0 6px 20px rgba(105, 45, 75, 0.08);
+}
+
+.kd-events-list h2 {
+  margin: 0 0 8px;
+  color: #914d70;
+  font-size: 1.5rem;
+}
+
+.kd-events-description {
+  margin: 0 0 24px;
+  color: #8b7180;
+}
+
+/* Tarjetas individuales */
+.kd-event-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 22px;
+  margin-bottom: 16px;
+  background: #fff8fb;
+  border: 1px solid #f3d4e2;
+  border-radius: 14px;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.kd-event-card:hover {
+  box-shadow: 0 6px 18px rgba(145, 77, 112, 0.12);
+  transform: translateY(-2px);
+}
+
+.kd-event-card-info h3 {
+  margin: 0 0 12px;
+  color: #914d70;
+  font-size: 1.2rem;
+}
+
+.kd-event-card-info p {
+  margin: 6px 0;
+  color: #715766;
+  font-size: 0.92rem;
+}
+
+/* Botones de editar y eliminar */
+.kd-event-card-actions {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.kd-edit-btn,
+.kd-delete-btn {
+  padding: 10px 16px;
+  border-radius: 9px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.kd-edit-btn {
+  background: #fff;
+  color: #a64f7c;
+  border: 1px solid #e5a8c6;
+}
+
+.kd-edit-btn:hover {
+  background: #fce7f1;
+}
+
+.kd-delete-btn {
+  background: #fff1f3;
+  color: #bd405b;
+  border: 1px solid #f1b7c4;
+}
+
+.kd-delete-btn:hover {
+  background: #ffe0e7;
+}
+
+/* Mensaje cuando no hay eventos */
+.kd-events-empty {
+  padding: 30px;
+  text-align: center;
+  color: #8b7180;
+  background: #fff8fb;
+  border-radius: 12px;
+}
+
+/* Diseño adaptable */
+@media (max-width: 700px) {
+  .kd-events-list {
+    padding: 18px;
+  }
+
+  .kd-event-card {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .kd-event-card-actions {
+    flex-wrap: wrap;
+  }
+
+  .kd-edit-btn,
+  .kd-delete-btn {
+    flex: 1;
+  }
+}

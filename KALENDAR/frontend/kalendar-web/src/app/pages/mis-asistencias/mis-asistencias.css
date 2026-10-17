@@ -1,0 +1,119 @@
+
+:host {
+  display: block;
+  min-height: 100vh;
+}
+
+.kd-bg {
+  min-height: 100vh;
+  background: #fff7fb;
+}
+
+.kd-page {
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 40px 24px 70px;
+}
+
+.kd-page__header {
+  margin-bottom: 32px;
+}
+
+.kd-page__title {
+  margin: 0 0 12px;
+  color: #914d70;
+  font-size: 2.3rem;
+}
+
+.kd-page__subtitle {
+  color: #8b7180;
+  line-height: 1.6;
+}
+
+/* Sección de asistencias */
+.kd-tickets-section {
+  padding: 28px;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid #f1c8da;
+  border-radius: 18px;
+  box-shadow: 0 6px 20px rgba(105, 45, 75, 0.08);
+}
+
+.kd-tickets-section h2 {
+  margin: 0 0 12px;
+  color: #914d70;
+  font-size: 1.4rem;
+}
+
+.kd-section-description {
+  margin-bottom: 24px;
+  color: #8b7180;
+  line-height: 1.6;
+}
+
+/* Mensaje cuando no hay registros */
+.kd-tickets-empty {
+  padding: 45px 24px;
+  text-align: center;
+  background: #fff8fb;
+  border: 1px dashed #e5a8c6;
+  border-radius: 14px;
+}
+
+.kd-tickets-icon {
+  margin-bottom: 16px;
+  font-size: 3.5rem;
+}
+
+.kd-tickets-empty h3 {
+  margin: 0 0 12px;
+  color: #914d70;
+  font-size: 1.3rem;
+}
+
+.kd-tickets-empty p {
+  max-width: 430px;
+  margin: 0 auto 26px;
+  color: #8b7180;
+  line-height: 1.7;
+}
+
+/* Botón para explorar eventos */
+.kd-explore-btn {
+  display: inline-block;
+  padding: 13px 26px;
+  border-radius: 10px;
+  background: #d96a9f;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.kd-explore-btn:hover {
+  background: #bd4d83;
+}
+
+/* Adaptación a celulares */
+@media (max-width: 600px) {
+  .kd-page {
+    padding: 25px 16px 50px;
+  }
+
+  .kd-page__title {
+    font-size: 1.8rem;
+  }
+
+  .kd-tickets-section {
+    padding: 20px;
+  }
+
+  .kd-tickets-empty {
+    padding: 35px 16px;
+  }
+
+  .kd-explore-btn {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}

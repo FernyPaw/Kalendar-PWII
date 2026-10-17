@@ -4,40 +4,151 @@
   <kd-navbar></kd-navbar>
 
   <main class="kd-page">
-    <header class="kd-page__header">
-      <div>
-        <h1 class="kd-display kd-page__title">¡안녕하세요, {{ userName }}!</h1>
-        <p class="kd-page__subtitle">Esto es lo que tienes en tu calendario.</p>
-      </div>
-      <a routerLink="/crear" class="kd-page__cta">
-        <kd-button variant="primary">+ Nueva publicación</kd-button>
+    
+<!-- Panel de control del administrador -->
+<section *ngIf="esAdministrador" class="kd-admin-dashboard">
+
+  <header class="kd-admin-header">
+    <h1 class="kd-display">
+      💗 Panel de control
+    </h1>
+
+    <p>
+      Bienvenido al panel de administración de KALENDAR.
+      Consulta la actividad general de la plataforma.
+    </p>
+  </header>
+
+  <!-- Estadísticas generales -->
+  <div class="kd-admin-stats">
+
+    <div class="kd-admin-stat">
+      <span>👥 Clientes registrados</span>
+      <h3>{{ adminStats.totalClientes }}</h3>
+    </div>
+
+    <div class="kd-admin-stat">
+      <span>☕ Cafeterías registradas</span>
+      <h3>{{ adminStats.totalCafeterias }}</h3>
+    </div>
+
+    <div class="kd-admin-stat">
+      <span>💌 Solicitudes pendientes</span>
+      <h3>{{ adminStats.cafeteriasPendientes }}</h3>
+    </div>
+
+    <div class="kd-admin-stat">
+      <span>🎟️ Eventos publicados</span>
+      <h3>{{ adminStats.totalEventos }}</h3>
+    </div>
+
+    <div class="kd-admin-stat">
+      <span>📝 Publicaciones</span>
+      <h3>{{ adminStats.totalPublicaciones }}</h3>
+    </div>
+
+  </div>
+
+  <!-- Accesos rápidos -->
+  <section class="kd-admin-actions">
+    <h2>Accesos rápidos</h2>
+
+    <div class="kd-admin-links">
+      <a routerLink="/cafeterias">
+        ☕ Gestionar cafeterías
       </a>
-    </header>
+    </div>
+  </section>
 
-    <section class="kd-grid" *ngIf="publications.length > 0; else empty">
-      <kd-card *ngFor="let pub of publications" class="kd-pub">
-        <div class="kd-pub__top">
-          <span class="kd-pub__tag">{{ pub.tag }}</span>
-          <span class="kd-pub__date">{{ pub.date }}</span>
-        </div>
-        <h3 class="kd-display kd-pub__title">{{ pub.title }}</h3>
-        <p class="kd-pub__excerpt">{{ pub.excerpt }}</p>
-        <div class="kd-pub__actions">
-          <button class="kd-pub__icon-btn" aria-label="Editar">Edit</button>
-          <button class="kd-pub__icon-btn" aria-label="Eliminar" (click)="deletePublication(pub.id)">Delete</button>
-        </div>
-      </kd-card>
-    </section>
+</section>
 
-    <ng-template #empty>
-      <kd-card class="kd-empty">
-        <p class="kd-empty__emoji"></p>
-        <h3 class="kd-display">Todavía no tienes publicaciones</h3>
-        <p class="kd-page__subtitle">Crea la primera para empezar a llenar tu calendario.</p>
-        <a routerLink="/crear">
-          <kd-button variant="primary">Crear publicación</kd-button>
-        </a>
-      </kd-card>
-    </ng-template>
+    
+<section *ngIf="userRole === 'cafeteria'" class="kd-cafe-dashboard">
+  <h2> Panel de control de mi cafetería</h2>
+
+  <p>
+    Consulta tus eventos, publicaciones,
+    inscripciones y asistencias.
+  </p>
+
+  
+<div class="kd-cafe-stats">
+
+  <div class="kd-cafe-stat">
+    <span> Eventos creados</span>
+    <h3>0</h3>
+  </div>
+
+  <div class="kd-cafe-stat">
+    <span> Publicaciones</span>
+    <h3>0</h3>
+  </div>
+
+  <div class="kd-cafe-stat">
+    <span> Inscripciones</span>
+    <h3>0</h3>
+  </div>
+
+  <div class="kd-cafe-stat">
+    <span> Asistencias confirmadas</span>
+    <h3>0</h3>
+  </div>
+
+</div>
+
+
+</section>
+    <section
+  *ngIf="userRole === 'cafeteria' && cafeStatus === 'pending'"
+  class="kd-approval-notice"
+>
+  <h2> Tu cafetería está pendiente de aprobación</h2>
+
+  <p>
+    Tu solicitud está siendo revisada por el administrador.
+    Mientras tanto, puedes acceder a tu perfil,
+    pero todavía no puedes crear eventos ni publicaciones.
+  </p>
+</section>
+
+<section
+  *ngIf="showApprovalMessage"
+  class="kd-approval-notice"
+>
+  <h2> ¡Tu cafetería ha sido aprobada!</h2>
+
+  <p>
+    ¡Bienvenida a KALENDAR! Ya puedes crear eventos
+    y publicaciones para compartir con la comunidad.
+  </p>
+
+  <button
+    type="button"
+    (click)="dismissApprovalMessage()"
+    class="kd-approval-notice__button"
+  >
+    Entendido
+  </button>
+</section>
+
+   
+<!-- Bienvenida para clientes y cafeterías -->
+<header
+  *ngIf="userRole === 'cliente' || userRole === 'cafeteria'"
+  class="kd-page__header"
+>
+  <div>
+    <h1 class="kd-display kd-page__title">
+      ¡환영합니다, {{ userName }}!
+    </h1>
+
+    <p class="kd-page__subtitle">
+      Bienvenido a KALENDAR ♡
+    </p>
+  </div>
+</header>
+
+
+
   </main>
 </div>

@@ -4,13 +4,45 @@
       <h1 class="kd-display kd-auth__title">Crea tu cuenta</h1>
       <p class="kd-auth__subtitle">Toma menos de un minuto.</p>
 
+    <div class="kd-field">
+  <label>¿Cómo deseas registrarte?</label>
+
+  <div class="kd-account-types">
+    <button
+      type="button"
+      class="kd-account-type"
+      [class.kd-account-type--active]="form.value.accountType === 'cliente'"
+      [attr.aria-pressed]="form.value.accountType === 'cliente'"
+    (click)="form.controls.accountType.setValue('cliente'); updateRfcValidation(); updatePhoneValidation()"
+    >
+      ♡ Usuario
+    </button>
+
+    <button
+      type="button"
+      class="kd-account-type"
+      [class.kd-account-type--active]="form.value.accountType === 'cafeteria'"
+      [attr.aria-pressed]="form.value.accountType === 'cafeteria'"
+      (click)="form.controls.accountType.setValue('cafeteria'); updateRfcValidation(); updatePhoneValidation()"
+    >
+      ☕ Cafetería
+    </button>
+  </div>
+</div>
+
       <div class="kd-field">
-        <label for="name">Nombre</label>
+       <label for="name">
+  {{ form.controls.accountType.value === 'cafeteria'
+    ? 'Nombre de la cafetería'
+    : 'Nombre' }}
+</label>
         <input
           id="name"
           type="text"
           formControlName="name"
-          placeholder="Tu nombre"
+         [placeholder]="form.controls.accountType.value === 'cafeteria'
+  ? 'Nombre del establecimiento'
+  : 'Tu nombre'"
           autocomplete="name"
           [class.kd-field__input--error]="name.invalid && name.touched"
         />
@@ -18,6 +50,85 @@
           Ingresa tu nombre.
         </span>
       </div>
+
+      <div class="kd-field">
+  <label for="username">Nombre de usuario</label>
+
+  <input
+    id="username"
+    type="text"
+    formControlName="username"
+    placeholder="Ej. maria_kpop"
+    autocomplete="username"
+    maxlength="20"
+    [class.kd-field__input--error]="form.controls.username.invalid && form.controls.username.touched"
+  />
+
+  <span
+    class="kd-field__error"
+    *ngIf="form.controls.username.invalid && form.controls.username.touched"
+  >
+    Usa entre 3 y 20 caracteres: letras, números o guion bajo.
+  </span>
+
+</div>
+
+<div class="kd-field" *ngIf="form.controls.accountType.value === 'cafeteria'">
+  <label for="rfc">RFC de la cafetería</label>
+
+  <input
+    id="rfc"
+    type="text"
+    formControlName="rfc"
+    placeholder="Ej. ABC123456XYZ"
+    maxlength="13"
+    [class.kd-field__input--error]="form.controls.rfc.invalid && form.controls.rfc.touched"
+  />
+
+  <span
+    class="kd-field__error"
+    *ngIf="form.controls.rfc.hasError('required') && form.controls.rfc.touched"
+  >
+    El RFC es obligatorio.
+  </span>
+
+  <span
+    class="kd-field__error"
+    *ngIf="form.controls.rfc.hasError('pattern') && form.controls.rfc.touched"
+  >
+    Ingresa un RFC válido de 12 o 13 caracteres.
+  </span>
+</div>
+<div
+  class="kd-field"
+  *ngIf="form.controls.accountType.value === 'cafeteria'"
+>
+  <label for="phone">Teléfono de contacto</label>
+
+  <input
+    id="phone"
+    type="tel"
+    formControlName="phone"
+    placeholder="Ej. 8112345678"
+    maxlength="10"
+    autocomplete="tel"
+    [class.kd-field__input--error]="form.controls.phone.invalid && form.controls.phone.touched"
+  />
+
+  <span
+  class="kd-field__error"
+  *ngIf="form.controls.phone.hasError('required') && form.controls.phone.touched"
+>
+  El teléfono de contacto es obligatorio.
+</span>
+
+<span
+  class="kd-field__error"
+  *ngIf="form.controls.phone.hasError('pattern') && form.controls.phone.touched"
+>
+  Ingresa un teléfono válido de 10 dígitos.
+</span>
+</div>
 
       <div class="kd-field">
         <label for="email">Correo electrónico</label>
@@ -29,9 +140,19 @@
           autocomplete="email"
           [class.kd-field__input--error]="email.invalid && email.touched"
         />
-        <span class="kd-field__error" *ngIf="email.invalid && email.touched">
-          Ingresa un correo válido.
-        </span>
+       <span
+  class="kd-field__error"
+  *ngIf="email.hasError('required') && email.touched"
+>
+  El correo electrónico es obligatorio.
+</span>
+
+<span
+  class="kd-field__error"
+  *ngIf="email.hasError('email') && email.touched"
+>
+  Ingresa un correo electrónico válido.
+</span>
       </div>
 
       <div class="kd-field">
@@ -41,7 +162,7 @@
             id="password"
             [type]="showPassword ? 'text' : 'password'"
             formControlName="password"
-            placeholder="Mínimo 6 caracteres"
+           placeholder="Mínimo 8 caracteres"
             autocomplete="new-password"
             [class.kd-field__input--error]="password.invalid && password.touched"
           />
@@ -54,9 +175,26 @@
             {{ showPassword ? 'Ocultar' : 'Ver' }}
           </button>
         </div>
-        <span class="kd-field__error" *ngIf="password.invalid && password.touched">
-          Mínimo 6 caracteres.
-        </span>
+       <span
+  class="kd-field__error"
+  *ngIf="password.hasError('required') && password.touched"
+>
+  La contraseña es obligatoria.
+</span>
+
+<span
+  class="kd-field__error"
+  *ngIf="password.hasError('minlength') && password.touched"
+>
+  La contraseña debe tener al menos 8 caracteres.
+</span>
+
+<span
+  class="kd-field__error"
+  *ngIf="password.hasError('pattern') && password.touched"
+>
+  Debe incluir una mayúscula, una minúscula, un número y un carácter especial.
+</span>
       </div>
 
       <div class="kd-field">
@@ -69,6 +207,19 @@
           autocomplete="new-password"
           [class.kd-field__input--error]="form.errors?.['passwordMismatch'] && confirmPassword.touched"
         />
+        <span
+  class="kd-field__error"
+  *ngIf="confirmPassword.hasError('required') && confirmPassword.touched"
+>
+  Confirma tu contraseña.
+</span>
+
+<span
+  class="kd-field__error"
+  *ngIf="form.hasError('passwordMismatch') && confirmPassword.touched"
+>
+  Las contraseñas no coinciden.
+</span>
       </div>
 
       <p class="kd-auth__error" *ngIf="errorMessage">{{ errorMessage }}</p>

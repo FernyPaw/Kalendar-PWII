@@ -201,3 +201,33 @@
     box-shadow: var(--kd-shadow-card);
   }
 }
+
+.kd-account-types {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.kd-account-type {
+  padding: 16px 12px;
+  border: 2px solid #e9dff1;
+  border-radius: 12px;
+  background: #fff;
+  color: #60466f;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.kd-account-type:hover {
+  border-color: #bb83d7;
+  background: #faf5ff;
+}
+
+.kd-account-type--active {
+  border-color: #9951c9;
+  background: #f4eafe;
+  color: #7137a2;
+}

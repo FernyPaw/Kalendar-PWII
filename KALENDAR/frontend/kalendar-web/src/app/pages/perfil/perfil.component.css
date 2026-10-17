@@ -128,3 +128,200 @@
   font-weight: 600;
   font-size: 0.9rem;
 }
+
+/* Publicaciones en el perfil de cafetería */
+.kd-profile-posts {
+  margin-top: 28px;
+}
+
+.kd-create-post-btn {
+  width: 100%;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 12px;
+  background: #d96a9f;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.kd-create-post-btn:hover:not(:disabled) {
+  background: #bd4d83;
+}
+
+.kd-create-post-btn:disabled {
+  background: #d7c5cf;
+  color: #756873;
+  cursor: not-allowed;
+}
+
+.kd-posts-notice {
+  margin-top: 10px;
+  color: #956b80;
+  font-size: 0.9rem;
+}
+
+/* Formulario de crear publicación */
+.kd-post-form {
+  margin-top: 20px;
+  padding: 26px;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid #f1c8da;
+  border-radius: 18px;
+  box-shadow: 0 6px 20px rgba(105, 45, 75, 0.08);
+}
+
+.kd-post-form h3 {
+  margin: 0 0 22px;
+  color: #914d70;
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+/* Campos de la publicación */
+.kd-post-field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.kd-post-field label {
+  color: #783c5c;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.kd-post-field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 130px;
+  padding: 14px;
+  border: 1px solid #e7bfd0;
+  border-radius: 12px;
+  background: #fff8fb;
+  color: #46323c;
+  font: inherit;
+  resize: vertical;
+  outline: none;
+}
+
+.kd-post-field textarea:focus {
+  border-color: #d96a9f;
+  box-shadow: 0 0 0 3px rgba(217, 106, 159, 0.14);
+}
+
+/* Selector de imagen */
+.kd-post-field input[type="file"] {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 16px;
+  border: 2px dashed #e5a8c6;
+  border-radius: 12px;
+  background: #fff7fb;
+  color: #783c5c;
+  font-size: 0.9rem;
+}
+
+.kd-post-field input[type="file"]::file-selector-button {
+  margin-right: 12px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 9px;
+  background: #f3d4e2;
+  color: #914d70;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.kd-post-field input[type="file"]::file-selector-button:hover {
+  background: #e9bad0;
+}
+
+/* Botones Cancelar y Publicar */
+.kd-post-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-top: 18px;
+  border-top: 1px solid #f1c8da;
+}
+
+.kd-post-cancel,
+.kd-post-publish {
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.kd-post-cancel {
+  background: #fff;
+  color: #914d70;
+  border: 1px solid #e5a8c6;
+}
+
+.kd-post-cancel:hover {
+  background: #fff0f6;
+}
+
+.kd-post-publish {
+  background: #d96a9f;
+  color: #fff;
+  border: none;
+}
+
+.kd-post-publish:hover {
+  background: #bd4d83;
+}
+
+/* Adaptación a celulares */
+@media (max-width: 600px) {
+  .kd-post-form {
+    padding: 18px;
+  }
+
+  .kd-post-actions {
+    flex-direction: column-reverse;
+  }
+
+  .kd-post-cancel,
+  .kd-post-publish {
+    width: 100%;
+  }
+}
+
+/* Sección de publicaciones */
+.kd-publicaciones-lista {
+  margin-top: 28px;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid #f1c8da;
+  border-radius: 18px;
+}
+
+.kd-publicaciones-lista h2 {
+  margin: 0 0 20px;
+  color: #914d70;
+}
+
+.kd-publicaciones-vacio {
+  padding: 35px 20px;
+  text-align: center;
+  background: #fff8fb;
+  border-radius: 12px;
+}
+
+.kd-publicaciones-vacio p {
+  color: #914d70;
+  font-weight: 600;
+}
+
+.kd-publicaciones-vacio span {
+  color: #8b7180;
+  font-size: 0.9rem;
+}

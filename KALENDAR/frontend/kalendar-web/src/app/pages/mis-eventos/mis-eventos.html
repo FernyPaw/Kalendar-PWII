@@ -1,0 +1,373 @@
+
+<div class="kd-bg">
+  <div class="kd-bg__overlay"></div>
+
+  <kd-navbar></kd-navbar>
+
+  <main class="kd-page">
+    <header class="kd-page__header">
+      <div>
+        <h1 class="kd-display kd-page__title">
+          📅 Mis eventos
+        </h1>
+
+        <p class="kd-page__subtitle">
+          Administra los eventos de tu cafetería.
+        </p>
+      </div>
+    </header>
+    
+<section class="kd-events-actions">
+  <button
+  *ngIf="puedeCrearEvento"
+    type="button"
+    class="kd-create-event-btn"
+    (click)="toggleFormulario()"
+  >
+    {{ mostrarFormulario ? '✕ Cancelar' : '+ Crear evento' }}
+  </button>
+</section>
+
+<section
+  *ngIf="puedeCrearEvento && mostrarFormulario"
+  class="kd-event-form"
+>
+
+<div class="kd-event-steps">
+
+  <span [class.kd-step-active]="pasoActual === 1">
+    1. Información básica
+  </span>
+
+  <span class="kd-step-arrow">→</span>
+
+  <span [class.kd-step-active]="pasoActual === 2">
+    2. Detalles
+  </span>
+
+  <span class="kd-step-arrow">→</span>
+
+  <span [class.kd-step-active]="pasoActual === 3">
+    3. Imagen
+  </span>
+
+  <span class="kd-step-arrow">→</span>
+
+  <span [class.kd-step-active]="pasoActual === 4">
+    4. Publicar
+  </span>
+
+</div>
+
+<h2>Crear nuevo evento</h2>
+
+<form [formGroup]="eventoForm">
+
+
+<h3>Información del evento</h3>
+
+<div class="kd-event-fields">
+
+  <!-- Nombre del evento -->
+  <div class="kd-form-group">
+    <label for="nombreEvento">
+      Nombre del evento *
+    </label>
+
+    <input
+      id="nombreEvento"
+      type="text"
+      formControlName="nombre"
+      placeholder="Ej. BTS Night"
+      maxlength="100"
+    />
+
+    <small
+      *ngIf="eventoForm.controls.nombre.touched &&
+             eventoForm.controls.nombre.hasError('required')"
+    >
+      El nombre del evento es obligatorio.
+    </small>
+
+    <small
+      *ngIf="eventoForm.controls.nombre.touched &&
+             eventoForm.controls.nombre.hasError('minlength')"
+    >
+      El nombre debe tener al menos 5 caracteres.
+    </small>
+  </div>
+
+  <!-- Artista o grupo -->
+  <div class="kd-form-group">
+    <label for="artistaEvento">
+      Artista o grupo *
+    </label>
+
+    <input
+      id="artistaEvento"
+      type="text"
+      formControlName="artista"
+      placeholder="Ej. BTS, BLACKPINK, Stray Kids"
+      maxlength="100"
+    />
+
+    <small
+      *ngIf="eventoForm.controls.artista.touched &&
+             eventoForm.controls.artista.hasError('required')"
+    >
+      El artista o grupo es obligatorio.
+    </small>
+
+    <small
+      *ngIf="eventoForm.controls.artista.touched &&
+             eventoForm.controls.artista.hasError('minlength')"
+    >
+      Debe tener al menos 2 caracteres.
+    </small>
+  </div>
+
+</div>
+
+
+
+
+  <!-- Descripción -->
+  <div class="kd-form-group">
+    <label for="descripcionEvento">
+      Descripción *
+    </label>
+
+    <textarea
+      id="descripcionEvento"
+      formControlName="descripcion"
+      placeholder="Descripcion del evento..."
+      rows="5"
+      maxlength="1000"
+    ></textarea>
+
+    <small
+      *ngIf="eventoForm.controls.descripcion.touched &&
+             eventoForm.controls.descripcion.hasError('required')"
+    >
+      La descripción es obligatoria.
+    </small>
+
+    <small
+      *ngIf="eventoForm.controls.descripcion.touched &&
+             eventoForm.controls.descripcion.hasError('minlength')"
+    >
+      La descripción debe tener al menos 20 caracteres.
+    </small>
+  </div>
+
+  
+<!-- Fecha y horario del evento -->
+<h3>Fecha y horario</h3>
+
+<div class="kd-event-fields">
+
+  <!-- Fecha -->
+  <div class="kd-form-group">
+    <label for="fechaEvento">Fecha del evento *</label>
+
+   
+<input
+  id="fechaEvento"
+  type="date"
+  formControlName="fecha"
+  [min]="fechaMinima"
+/>
+
+
+    <small
+      *ngIf="eventoForm.controls.fecha.touched &&
+             eventoForm.controls.fecha.hasError('required')"
+    >
+      La fecha del evento es obligatoria.
+    </small>
+  </div>
+
+  <!-- Hora de inicio -->
+  <div class="kd-form-group">
+    <label for="horaInicioEvento">Hora de inicio *</label>
+
+    <input
+      id="horaInicioEvento"
+      type="time"
+      formControlName="horaInicio"
+    />
+
+    <small
+      *ngIf="eventoForm.controls.horaInicio.touched &&
+             eventoForm.controls.horaInicio.hasError('required')"
+    >
+      La hora de inicio es obligatoria.
+    </small>
+  </div>
+
+  <!-- Hora de finalización -->
+  <div class="kd-form-group">
+    <label for="horaFinEvento">Hora de finalización *</label>
+
+    <input
+      id="horaFinEvento"
+      type="time"
+      formControlName="horaFin"
+    />
+
+    <small
+      *ngIf="eventoForm.controls.horaFin.touched &&
+             eventoForm.controls.horaFin.hasError('required')"
+    >
+      La hora de finalización es obligatoria.
+    </small>
+    <small
+  *ngIf="horarioInvalido"
+  class="kd-error-message"
+>
+  La hora de finalización debe ser posterior
+  a la hora de inicio.
+</small>
+  </div>
+
+</div>
+
+
+<!-- Tipo de entrada -->
+<h3>🎟️ Tipo de entrada</h3>
+
+<div class="kd-form-group">
+  <label for="tipoEntrada">¿El evento tendrá costo? *</label>
+
+  <select
+    id="tipoEntrada"
+    formControlName="tipoEntrada"
+  >
+    <option value="gratis">Entrada gratuita</option>
+    <option value="pago">Entrada con costo</option>
+  </select>
+</div>
+
+<!-- Precio de la entrada -->
+<div
+  class="kd-form-group"
+  *ngIf="eventoForm.controls.tipoEntrada.value === 'pago'"
+>
+  <label for="precioEntrada">Precio de entrada (MXN) *</label>
+
+  <input
+  
+  
+    id="precioEntrada"
+    type="number"
+    formControlName="precioEntrada"
+    min="0.01"
+    step="0.01"
+    placeholder="Ej. 150"
+  />
+  <small
+  *ngIf="eventoForm.controls.precioEntrada.touched &&
+         eventoForm.controls.precioEntrada.invalid"
+  class="kd-error-message"
+>
+  Ingresa un precio válido mayor que $0.
+</small>
+</div>
+
+<!-- Imagen del evento -->
+<h3>🖼️ Flyer del evento</h3>
+
+<div class="kd-form-group">
+  <label for="flyerEvento">
+    Imagen del flyer (opcional)
+  </label>
+
+  <div class="kd-flyer-upload">
+    <span class="kd-flyer-icon">🖼️</span>
+
+    <p>Selecciona una imagen para tu evento</p>
+
+    <input
+      id="flyerEvento"
+      type="file"
+      accept=".jpg,.jpeg,.png,.webp"
+    />
+
+    <small>
+      Formatos: JPG, JPEG, PNG o WEBP.
+    
+    </small>
+  </div>
+</div>
+
+
+<!-- Botón para publicar el evento -->
+<div class="kd-event-submit">
+  <button
+    type="button"
+    class="kd-publish-btn"
+  >
+     Publicar evento
+  </button>
+</div>
+
+</form>
+
+</section>
+
+<!-- Lista de eventos publicados -->
+<section class="kd-events-list">
+
+  <h2>Mis eventos publicados</h2>
+
+  <p class="kd-events-description">
+    Aquí puedes consultar los eventos de tu cafetería.
+  </p>
+
+  <div
+    class="kd-event-card"
+    *ngFor="let evento of eventos"
+  >
+    <div class="kd-event-card-info">
+
+      <h3>{{ evento.nombre }}</h3>
+
+      <p>
+        📅 Fecha: {{ evento.fecha }}
+      </p>
+
+      <p>
+        🕒 Hora: {{ evento.hora }}
+      </p>
+
+      <p>
+        🎟️ Entrada:
+        {{ evento.precio === 0 ? 'Gratis' : '$' + evento.precio + ' MXN' }}
+      </p>
+
+      <p>
+        Estado: {{ evento.estado }}
+      </p>
+
+    </div>
+
+    <div class="kd-event-card-actions">
+      <button type="button" class="kd-edit-btn">
+         Editar
+      </button>
+
+      <button type="button" class="kd-delete-btn">
+         Eliminar
+      </button>
+    </div>
+
+  </div>
+
+  <p *ngIf="eventos.length === 0" class="kd-events-empty">
+    Todavía no has publicado ningún evento.
+  </p>
+
+</section>
+
+  </main>
+</div>

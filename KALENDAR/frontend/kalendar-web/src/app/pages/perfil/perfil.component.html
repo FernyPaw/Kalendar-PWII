@@ -4,7 +4,7 @@
   <kd-navbar></kd-navbar>
 
   <main class="kd-page">
-    <h1 class="kd-display kd-page__title">Tu perfil</h1>
+    <h1 class="kd-display kd-page__title">안녕하세요!</h1>
     <p class="kd-page__subtitle">Así te van a ver en Kalendar.</p>
 
     <kd-card class="kd-profile-card">
@@ -42,13 +42,89 @@
           <textarea id="bio" formControlName="bio" rows="3" placeholder="Cuéntanos de ti..."></textarea>
         </div>
 
-        <div class="kd-form__actions">
-          <span class="kd-form__saved" *ngIf="saved">Guardado ♡</span>
-          <kd-button type="submit" variant="primary" [loading]="saving">
-            Guardar cambios
-          </kd-button>
-        </div>
       </form>
     </kd-card>
+    
+<!-- Crear publicación: solo cafeterías -->
+<section *ngIf="esCafeteria" class="kd-profile-posts">
+
+  <button
+    type="button"
+    class="kd-create-post-btn"
+    [disabled]="!puedePublicar"
+    (click)="toggleFormularioPublicacion()"
+  >
+    {{ mostrarFormularioPublicacion
+      ? '✕ Cancelar publicación'
+      : '+ Crear publicación' }}
+  </button>
+
+  <p *ngIf="!puedePublicar" class="kd-posts-notice">
+    Tu cafetería debe ser aprobada para crear publicaciones.
+  </p>
+
+<!-- Formulario para crear publicación -->
+<div
+  *ngIf="puedePublicar && mostrarFormularioPublicacion"
+  class="kd-post-form"
+>
+  <h3>Crear publicación ♡</h3>
+
+  <!-- Texto de la publicación -->
+  <div class="kd-post-field">
+    <label for="textoPublicacion">
+      ¿Qué quieres compartir?
+    </label>
+
+    <textarea
+      id="textoPublicacion"
+      rows="5"
+      placeholder="Que vas a publicar hoy?... "
+    ></textarea>
+  </div>
+
+  <!-- Imagen opcional -->
+  <div class="kd-post-field">
+    <label for="imagenPublicacion">
+       Agregar imagen (opcional)
+    </label>
+
+    <input
+      id="imagenPublicacion"
+      type="file"
+      accept=".jpg,.jpeg,.png,.webp"
+    />
+  </div>
+
+  <!-- Acciones -->
+  <div class="kd-post-actions">
+    <button
+      type="button"
+      class="kd-post-cancel"
+      (click)="toggleFormularioPublicacion()"
+    >
+      Cancelar
+    </button>
+
+    <button
+      type="button"
+      class="kd-post-publish"
+    >
+      Publicar
+    </button>
+  </div>
+</div>
+
+ 
+</section>
+<!-- Publicaciones de la cafetería -->
+<section *ngIf="esCafeteria" class="kd-publicaciones-lista">
+  <h2>Publicaciones</h2>
+
+  <div class="kd-publicaciones-vacio">
+    <p>Todavía nada de nada... u.u</p>
+    <span>Las publicaciones de tu cafetería aparecerán aquí.</span>
+  </div>
+</section>
   </main>
 </div>
